@@ -1,0 +1,191 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Playfair+Display:wght@400;500;600;700&display=swap');
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* Design Studio Color System - Inspired by Bittercreek & Artsy */
+@layer base {
+  :root {
+    /* Core Studio Colors */
+    --background: 0 0% 100%;
+    --foreground: 0 0% 8%;
+
+    /* Studio Accent - Warm lime green like Bittercreek */
+    --studio-accent: 68 100% 84%;
+    --studio-accent-foreground: 0 0% 8%;
+
+    /* Sophisticated Grays */
+    --gray-50: 0 0% 98%;
+    --gray-100: 0 0% 96%;
+    --gray-200: 0 0% 90%;
+    --gray-300: 0 0% 83%;
+    --gray-400: 0 0% 64%;
+    --gray-500: 0 0% 45%;
+    --gray-600: 0 0% 32%;
+    --gray-700: 0 0% 25%;
+    --gray-800: 0 0% 15%;
+    --gray-900: 0 0% 8%;
+
+    /* Semantic Colors */
+    --primary: 0 0% 8%;
+    --primary-foreground: 0 0% 98%;
+
+    --secondary: 0 0% 96%;
+    --secondary-foreground: 0 0% 8%;
+
+    --muted: 0 0% 96%;
+    --muted-foreground: 0 0% 45%;
+
+    --accent: 68 100% 84%;
+    --accent-foreground: 0 0% 8%;
+
+    --card: 0 0% 100%;
+    --card-foreground: 0 0% 8%;
+
+    --border: 0 0% 90%;
+    --input: 0 0% 90%;
+    --ring: 0 0% 8%;
+
+    --destructive: 0 84% 60%;
+    --destructive-foreground: 0 0% 98%;
+
+    --popover: 0 0% 100%;
+    --popover-foreground: 0 0% 8%;
+
+    /* Design System Variables */
+    --radius: 0rem;
+    --content-width: 1200px;
+    --gutter: 2rem;
+
+    /* Typography Scale */
+    --font-serif: 'Playfair Display', serif;
+    --font-sans: 'Inter', sans-serif;
+  }
+
+  .dark {
+    --background: 0 0% 8%;
+    --foreground: 0 0% 98%;
+
+    --studio-accent: 68 100% 84%;
+    --studio-accent-foreground: 0 0% 8%;
+
+    --primary: 0 0% 98%;
+    --primary-foreground: 0 0% 8%;
+
+    --secondary: 0 0% 15%;
+    --secondary-foreground: 0 0% 98%;
+
+    --muted: 0 0% 15%;
+    --muted-foreground: 0 0% 64%;
+
+    --accent: 68 100% 84%;
+    --accent-foreground: 0 0% 8%;
+
+    --card: 0 0% 8%;
+    --card-foreground: 0 0% 98%;
+
+    --border: 0 0% 15%;
+    --input: 0 0% 15%;
+    --ring: 0 0% 98%;
+
+    --popover: 0 0% 8%;
+    --popover-foreground: 0 0% 98%;
+  }
+}
+
+@layer base {
+  * {
+    @apply border-border;
+  }
+
+  html {
+    @apply scroll-smooth;
+  }
+
+  body {
+    @apply bg-background text-foreground font-sans antialiased;
+    font-feature-settings: "rlig" 1, "calt" 1;
+  }
+
+  /* Typography System */
+  .text-display {
+    @apply font-serif text-6xl md:text-7xl lg:text-8xl font-medium leading-none tracking-tight;
+  }
+
+  .text-headline {
+    @apply font-serif text-4xl md:text-5xl lg:text-6xl font-medium leading-tight tracking-tight;
+  }
+
+  .text-title {
+    @apply font-serif text-2xl md:text-3xl lg:text-4xl font-medium leading-tight;
+  }
+
+  .text-subtitle {
+    @apply font-sans text-lg md:text-xl font-medium tracking-wide uppercase;
+  }
+
+  .text-body-large {
+    @apply font-sans text-lg md:text-xl leading-relaxed;
+  }
+
+  .text-body {
+    @apply font-sans text-base leading-relaxed;
+  }
+
+  .text-caption {
+    @apply font-sans text-sm tracking-wide uppercase;
+  }
+}
+
+@layer components {
+
+  /* Studio Navigation */
+  .nav-link {
+    @apply relative font-sans text-sm font-medium tracking-wide uppercase transition-colors duration-300;
+    @apply after:absolute after:bottom-0 after:left-0 after:h-px after:w-0 after:bg-current after:transition-all after:duration-300;
+    @apply hover:after:w-full;
+  }
+
+  /* Project Cards */
+  .project-card {
+    @apply relative overflow-hidden bg-card transition-all duration-500;
+    @apply hover:scale-[1.02] hover:shadow-2xl;
+  }
+
+  .project-image {
+    @apply aspect-[4/3] w-full object-cover transition-transform duration-700;
+    @apply group-hover:scale-110;
+  }
+
+  /* Buttons */
+  .btn-primary {
+    @apply inline-flex items-center justify-center px-8 py-4 font-sans text-sm font-medium tracking-wide uppercase;
+    @apply bg-primary text-primary-foreground transition-all duration-300;
+    @apply hover:bg-gray-800 hover:scale-105 active:scale-95;
+  }
+
+  .btn-outline {
+    @apply inline-flex items-center justify-center px-8 py-4 font-sans text-sm font-medium tracking-wide uppercase;
+    @apply border border-current bg-transparent transition-all duration-300;
+    @apply hover:bg-current hover:text-background hover:scale-105 active:scale-95;
+  }
+
+  /* Layout Containers */
+  .container-studio {
+    @apply mx-auto max-w-[var(--content-width)] px-[var(--gutter)];
+  }
+
+  .section-padding {
+    @apply py-16 md:py-24 lg:py-32;
+  }
+
+  /* Animations */
+  .fade-in {
+    @apply opacity-0 translate-y-8 transition-all duration-700 ease-out;
+  }
+
+  .fade-in.in-view {
+    @apply opacity-100 translate-y-0;
+  }
+}
