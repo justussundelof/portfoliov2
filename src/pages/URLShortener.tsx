@@ -6,7 +6,11 @@ import { Copy, Link, ArrowLeft, Trash2 } from 'lucide-react';
 import { useToast } from '@/hooks/use-toast';
 import { Link as RouterLink } from 'react-router-dom';
 
-type ShortUrl = { original: string; short: string; id: string };
+type ShortUrl = {
+    id: string;
+    original: string;
+    short: string;
+};
 
 const API_SHORTEN = '/api/shorten';
 
@@ -16,21 +20,18 @@ const URLShortener: React.FC = () => {
     const [loading, setLoading] = useState(false);
     const { toast } = useToast();
 
-    // Load list from localStorage once
+    // Load saved URLs from localStorage
     useEffect(() => {
         try {
             const stored = localStorage.getItem('shortUrls');
-            if (stored) {
-                setShortUrls(JSON.parse(stored));
-            }
+            if (stored) setShortUrls(JSON.parse(stored));
         } catch (err) {
-            // ignore parse errors
-            console.warn('Failed to read shortUrls from localStorage', err);
+            console.warn('Failed to load shortUrls from localStorage', err);
         }
     }, []);
 
-    // Create a short URL by calling the serverless API
-    async function generateShortUrl() {
+    // Create short URL via serverless API
+    const generateShortUrl = async () => {
         if (!url || !url.trim()) {
             toast({ title: 'Enter a URL', description: 'Please paste a URL to shorten.' });
             return;
@@ -45,38 +46,46 @@ const URLShortener: React.FC = () => {
                 body: JSON.stringify({ url: url.trim() }),
             });
 
-            const data = await res.json();
-
-            if (!res.ok) {
-                throw new Error(data?.error || 'Failed to shorten URL');
+            const text = await res.text();
+            let data: any;
+            try {
+                data = text ? JSON.parse(text) : {};
+            } catch {
+                throw new Error(`Server returned non-JSON response: ${text}`);
             }
 
-            const newItem: ShortUrl = { id: data.id, original: data.url, short: data.shortUrl };
+            if (!res.ok) throw new Error(data?.error || `Server responded with ${res.status}`);
 
-            const updated = [newItem, ...shortUrls];
-            setShortUrls(updated);
-            localStorage.setItem('shortUrls', JSON.stringify(updated));
+            const newItem: ShortUrl = {
+                id: data.id,
+                original: data.url,
+                short: data.shortUrl,
+            };
+
+            const updatedList = [newItem, ...shortUrls];
+            setShortUrls(updatedList);
+            localStorage.setItem('shortUrls', JSON.stringify(updatedList));
             setUrl('');
             toast({ title: 'URL Shortened!', description: 'Short URL created.' });
         } catch (err: any) {
-            console.error('shorten error', err);
-            toast({ title: 'Error', description: err?.message || 'Something went wrong' });
+            console.error('Shorten failed:', err);
+            toast({ title: 'Could not shorten URL', description: err?.message || 'Unknown error' });
         } finally {
             setLoading(false);
         }
-    }
+    };
 
-    // copy to clipboard with toast
+    // Copy short URL to clipboard
     const copyToClipboard = async (text: string) => {
         try {
             await navigator.clipboard.writeText(text);
             toast({ title: 'Copied!', description: 'URL copied to clipboard.' });
-        } catch (err) {
+        } catch {
             toast({ title: 'Copy failed', description: 'Could not copy to clipboard.' });
         }
     };
 
-    // delete locally (optionally call API later)
+    // Delete a short URL locally
     const deleteUrl = (id: string) => {
         const updatedList = shortUrls.filter((u) => u.id !== id);
         setShortUrls(updatedList);
@@ -84,7 +93,7 @@ const URLShortener: React.FC = () => {
         toast({ title: 'Deleted', description: 'Short URL removed locally.' });
     };
 
-    // small helper: allow Enter to submit
+    // Press Enter to submit
     const handleKeyDown: React.KeyboardEventHandler<HTMLInputElement> = (e) => {
         if (e.key === 'Enter') {
             e.preventDefault();
@@ -119,12 +128,11 @@ const URLShortener: React.FC = () => {
                     <CardContent className="space-y-4">
                         <div className="flex gap-4">
                             <Input
-                                placeholder="https://example.com/some/long/path"
+                                placeholder="Paste your long URL here..."
                                 value={url}
                                 onChange={(e) => setUrl(e.target.value)}
                                 className="flex-1"
                                 onKeyDown={handleKeyDown}
-                                aria-label="URL to shorten"
                             />
                             <Button onClick={generateShortUrl} disabled={!url || loading}>
                                 {loading ? 'Shortening...' : 'Shorten'}
@@ -156,7 +164,6 @@ const URLShortener: React.FC = () => {
                                                 >
                                                     {item.short}
                                                 </a>
-
                                                 <Button
                                                     variant="ghost"
                                                     size="sm"
@@ -165,7 +172,6 @@ const URLShortener: React.FC = () => {
                                                 >
                                                     <Copy className="w-4 h-4" />
                                                 </Button>
-
                                                 <Button
                                                     variant="ghost"
                                                     size="sm"
@@ -189,6 +195,7 @@ const URLShortener: React.FC = () => {
 };
 
 export default URLShortener;
+
 
 
 
