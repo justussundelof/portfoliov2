@@ -68,7 +68,7 @@ const URLShortener: React.FC = () => {
             setShortUrls(updatedList);
             localStorage.setItem('shortUrls', JSON.stringify(updatedList));
             setUrl('');
-            toast({ title: 'URL Skapad!', description: 'Short URL created.' });
+            toast({ title: 'URL Skapad!', description: 'Din nya URL är redo att användas' });
         } catch (err: any) {
             console.error('Shorten failed:', err);
             toast({ title: 'Could not shorten URL', description: err?.message || 'Unknown error' });
@@ -114,7 +114,7 @@ const URLShortener: React.FC = () => {
                         <ArrowLeft className="w-4 h-4" />
                         Tillbaka
                     </RouterLink>
-                    <h1 className="font-serif text-5xl lg:text-7xl mb-6">URL Shortener</h1>
+                    <h1 className="font-serif text-5xl lg:text-7xl mb-6">URL Tool</h1>
                     <p className="text-xl text-studio-muted max-w-2xl">
                         Gör om dina URLer för att maskera eller förkorta! (förutsatt att du har en kort domän)
                     </p>
