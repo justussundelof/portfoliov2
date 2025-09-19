@@ -22,7 +22,7 @@ const projects: Project[] = [
     {
         id: 'APP01',
         title: 'URL tool',
-        client: 'TypeScript, Serverless API med Vercel',
+        client: 'TypeScript, Serverless Backend med Upstash Redis',
         year: '2024',
         category: 'TypeScript, Serverless API',
         image: urlImg,
