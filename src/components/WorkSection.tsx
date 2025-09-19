@@ -99,9 +99,10 @@ const WorkSection: React.FC = () => {
 
                 <div className="grid gap-8 lg:gap-12">
                     {projects.map((project, index) => (
-                        <div
+                        <Link
                             key={project.id}
-                            className="fade-in project-card group"
+                            to={project.link}
+                            className="fade-in project-card group block"
                             style={{ animationDelay: `${0.2 + index * 0.1}s` }}
                         >
                             <div className="grid lg:grid-cols-2 gap-8 lg:gap-12 items-center">
@@ -110,18 +111,22 @@ const WorkSection: React.FC = () => {
                                         <img src={project.image} alt={project.title} className="project-image" />
                                     </div>
                                 </div>
-
-                                <div className={`${index % 2 === 1 ? 'lg:order-1' : ''} space-y-6`}>
-                                    <Link to={project.link} className="nav-link">
-                                        <h3 className="text-title">{project.title}</h3>
-                                    </Link>
+                                <div
+                                    className={`${index % 2 === 1 ? 'lg:order-1' : ''}
+                                        flex flex-col justify-center items-center
+                                        space-y-6
+                                        ${index % 2 === 0 ? 'pl-6 lg:pl-12' : ''}
+                                        ${index % 2 === 1 ? 'lg:pr-12' : ''}
+                                    `}
+                                >
+                                    <h3 className="text-title">{project.title}</h3>
                                     {project.client && (
                                         <p className="text-sm text-muted-foreground">{project.client}</p>
                                     )}
                                     <p className="text-body text-muted-foreground leading-relaxed">{project.description}</p>
                                 </div>
                             </div>
-                        </div>
+                        </Link>
                     ))}
                 </div>
             </div>
