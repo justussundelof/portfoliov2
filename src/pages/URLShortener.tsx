@@ -92,7 +92,7 @@ const URLShortener: React.FC = () => {
         const updatedList = shortUrls.filter((u) => u.id !== id);
         setShortUrls(updatedList);
         localStorage.setItem('shortUrls', JSON.stringify(updatedList));
-        toast({ title: 'Deleted', description: 'Short URL removed locally.' });
+        toast({ title: 'Raderad', description: 'URL borttagen.' });
     };
 
     // Press Enter to submit
