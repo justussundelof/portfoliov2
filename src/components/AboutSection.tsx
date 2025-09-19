@@ -1,5 +1,5 @@
 import { useEffect, useRef } from 'react';
-import myPic from '../images/IMG_2396.jpg';
+import portraitPic from '../images/IMG_2396.jpg';
 
 
 
@@ -46,7 +46,7 @@ const AboutSection = () => {
                         </div> */}
                         <div className="lg:col-span-5 fade-in">
                             <img
-                                src={myPic} // <-- Vite-bundled image
+                                src={portraitPic} // <-- Vite-bundled image
                                 alt="Frontend utvecklare pic"
                                 className="w-full h-auto rounded-2xl shadow-lg"
                             />
