@@ -26,7 +26,7 @@ const projects: Project[] = [
         year: '2024',
         category: 'TypeScript, Serverless API',
         image: urlImg,
-        description: 'Forkörta eller kanske maskera dina långa URLer!',
+        description: 'Gör om URLer till dina egna!',
         link: '/url-shortener',
     },
     {
