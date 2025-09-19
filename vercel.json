@@ -1,0 +1,9 @@
+// vercel.json
+{
+    "rewrites": [
+        {
+            "source": "/:id",
+            "destination": "/api/redirect?id=:id"
+        }
+    ]
+}

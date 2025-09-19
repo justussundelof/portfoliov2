@@ -1,21 +1,14 @@
-// /api/[id].ts
-let urls: Record<string, string> = {}; // in-memory store for demo
+import { VercelRequest, VercelResponse } from '@vercel/node';
 
-export default function handler(req, res) {
+interface UrlMap { [id: string]: string; }
+const urls: UrlMap = {}; // same in-memory store
+
+export default function handler(req: VercelRequest, res: VercelResponse) {
     const { id } = req.query;
+    if (!id || Array.isArray(id)) return res.status(400).send('Invalid ID');
 
-    if (req.method === 'GET') {
-        const original = urls[id];
-        if (original) return res.redirect(302, original);
-        return res.status(404).send('Not found');
-    }
+    const target = urls[id];
+    if (!target) return res.status(404).send('URL not found');
 
-    if (req.method === 'POST') {
-        const { originalUrl } = req.body;
-        const newId = Math.random().toString(36).substring(2, 8);
-        urls[newId] = originalUrl;
-        return res.status(200).json({ id: newId, shortUrl: `${req.headers.origin}/${newId}`, original: originalUrl });
-    }
-
-    res.status(405).send('Method not allowed');
+    res.redirect(target);
 }
