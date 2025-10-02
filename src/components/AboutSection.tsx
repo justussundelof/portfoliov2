@@ -57,7 +57,7 @@ const AboutSection = () => {
                     <div className="lg:col-span-7 space-y-8">
                         <div className="fade-in" style={{ animationDelay: '0.2s' }}>
                             <p className="text-body-large leading-relaxed text-muted-foreground">
-                                Som blivande frontendutvecklare tror jag på kraften i kreativt samarbete. Som student inom frontendutveckling vill jag kombinera teknik och design för att skapa digitala upplevelser som både engagerar och är användarvänliga. Varje projekt är för mig en chans att lära, utforska och utvecklas.
+                                Som student inom frontendutveckling vill jag kombinera teknik och design för att skapa digitala upplevelser som både engagerar och är användarvänliga. Varje projekt är för mig en chans att lära, utforska och utvecklas.
                             </p>
                         </div>
 
