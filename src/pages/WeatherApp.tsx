@@ -109,7 +109,7 @@ const WeatherApp = () => {
                     </RouterLink>
                     <h1 className="font-serif text-5xl lg:text-7xl mb-6">Väder-App</h1>
                     <p className="text-xl text-studio-muted max-w-2xl">
-                        Fåen uppdaterad väderrapport!
+                        Få en uppdaterad väderrapport!
                     </p>
                 </div>
 

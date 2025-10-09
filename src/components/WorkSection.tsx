@@ -31,11 +31,11 @@ const projects: Project[] = [
     },
     {
         id: 'APP02',
-        title: 'Väderet',
+        title: 'Vädret',
         category: 'API hantering',
         client: 'API fetching',
         image: weatherImg,
-        description: 'Tydlig och enkel väderapp',
+        description: 'Kolla vad det är för väder hos dig just nu!',
         link: '/weather-app',
     },
     {
@@ -45,7 +45,7 @@ const projects: Project[] = [
         year: '2024',
         category: 'Search & Discovery',
         image: recipeImg,
-        description: 'Hitta dina favoritrecept med vackra kort och detaljerade matlagningsinstruktioner.',
+        description: 'Hitta nya favoritrecept',
         link: '/recipe-finder',
     },
     {
@@ -55,7 +55,7 @@ const projects: Project[] = [
         year: '2024',
         category: 'Creative Suite',
         image: beatImg,
-        description: 'Simpel drum machine för att skapa beats direkt i webbläsaren.',
+        description: 'Drum machine för att skapa beats direkt i webbläsaren.',
         link: '/beat-maker',
     },
 ];

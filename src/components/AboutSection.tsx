@@ -77,14 +77,13 @@ const AboutSection = () => {
                             <div>
                                 <h3 className="text-subtitle mb-4">Teknik</h3>
                                 <p className="text-body text-muted-foreground">
-                                    Jag lär mig moderna verktyg och ramverk, och tycker det är roligt att se hur idéer växer fram i kod.
-                                </p>
+                                    Jag tycker det är roligt att se hur idéer växer fram i kod och lär mig mer och mer i djungeln av moderna verktyg och ramverk.                                </p>
                             </div>
                             <div>
                                 <h3 className="text-subtitle mb-4">Sammarbete</h3>
                                 <p className="text-body text-muted-foreground">
                                     Jag trivs med att jobba tillsammans med andra och tycker att bra kommunikation gör arbetet både roligare och bättre.
-                                </p>
+                                    Jag är en social och lyhörd person som trivs att jobba tillsammans i team och bygga på varandras idéer. Jag tror på att bra och öppen kommunikation gör arbetet roligare, effektivare och bättre.                                </p>
                             </div>
                         </div>
 
