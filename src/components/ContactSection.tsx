@@ -24,7 +24,7 @@ const ContactSection = () => {
     }, []);
 
     return (
-        <section id="contact" ref={sectionRef} className="section-padding bg-background">
+        <section id="contact" ref={sectionRef} className="section-padding bg-studio-accent">
             <div className="container-studio">
                 <div className="max-w-4xl mx-auto text-center">
                     <div className="fade-in mb-12">

@@ -53,7 +53,7 @@ const RecipeFinder = () => {
                     </RouterLink>
                     <h1 className="font-serif text-5xl lg:text-7xl mb-6">Receptsök</h1>
                     <p className="text-xl text-studio-muted max-w-2xl">
-                        Upptäck nya recept!                     </p>
+                        Upptäck nya recept! (Engelska söktermer)                    </p>
                 </div>
 
                 <Card className="mb-12 border-studio-border bg-white/50 backdrop-blur-sm">
